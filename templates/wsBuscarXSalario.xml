@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employees>
+    <?php
+        foreach ($larr_employees as $employee)
+        { ?>
+            <employee>
+                <id><?php echo $employee["id"]; ?></id>
+                <name><?php echo $employee["name"]; ?></name>
+				<age><?php echo $employee["age"]; ?></age>
+				<gender><?php echo $employee["gender"]; ?></gender>
+                <email><?php echo $employee["email"]; ?></email>
+                <phone><?php echo $employee["phone"]; ?></phone>
+                <address><?php echo $employee["address"]; ?></address>
+                <position><?php echo $employee["position"]; ?></position>
+                <salary><?php echo $employee["salary"]; ?></salary>
+                <skills>
+                    <?php
+                    foreach ($employee['skills'] as $skill)
+                    { ?>
+                        <skill><?php echo $skill["skill"]; ?></skill>
+                    <?php 
+                    };
+                    ?>
+                </skills>
+            </employee>
+        <?php };
+    ?>
+</employees>

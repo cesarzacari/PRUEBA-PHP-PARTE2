@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Lista de Empleados</title>
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    </head>
+    <body>
+        <!-- <h1>Slim</h1>
+        <div>a microframework for PHP</div>
+
+        <?php if (isset($name)) : ?>
+            <h2>Hello <?= htmlspecialchars($name); ?>!</h2>
+        <?php else: ?>
+            <p>Try <a href="http://www.slimframework.com">SlimFramework</a>
+        <?php endif; ?> -->
+
+        <div class="container">
+            
+            <div class="row text-center">
+                <h1 class="title">Lista de Empleados</h1>
+            </div>
+            <br />
+            <div class="row">
+                <form class="form-inline" id="search_email" method="post" action="search">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="email">
+                  </div>
+                  <input type="submit" class="btn btn-default" value="Buscar" />
+                </form>
+            </div>
+
+            <div class="row">
+                <form class="form-inline" id="search_lista_completa" method="post" action="all_list">
+                  <input type="submit" class="btn btn-primary pull-right" value="Ver lista completa" />
+                </form>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Posicion</th>
+                                <th>Salario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                            $i = 1;
+                            foreach($employees as $employee){
+                        ?>
+                            <tr>
+                                <td><?= $i ?></td>
+                                <td><?= $employee['name'] ?></td>
+                                <td><?= $employee['email'] ?></td>
+                                <td><?= $employee['position'] ?></td>
+                                <td><?= $employee['salary'] ?></td>
+                                <td class="text-center"><a href="ver_detalle/<?= $employee['id'] ?>" data-id="20" class="linkedit btn btn-warning" id="mEdit" data-toggle="modal">Ver detalle</a></td>
+                            </tr>
+                        <?php
+                                $i++;
+                            }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+			<hr>
+	        <h4>Generar URL servicio web Buscar Empleados por Rango Salarial</h4>
+		    <br /> 
+            <div class="row">
+			    <form class="form-inline" id="buscarXsalario" method="post" action="webservice">
+				  <div class="form-group">
+                    <label for="salarmin">Salario Min.</label>
+                    <input type="text" class="form-control" id="salariomin" name="salariomin">
+					<label for="salarmax">Salario Max.</label>
+                    <input type="text" class="form-control" id="salariomax" name="salariomax">
+                  </div>
+                  <input type="submit" class="btn btn-danger pull-right" value="XML consulta" />
+                </form>
+            </div>
+			<br/>
+        </div>
+    </body>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
